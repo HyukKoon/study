@@ -30,8 +30,3 @@ def solution(participant, completion):
 test = ["leo", "kiki", "eden"]
 test2 = ["eden", "kiki"]
 print(solution(test, test2))
-#
-# a = [1, 2, 3, 1]
-# del(a[a.index(1)])
-# print(a)
-# print(a.index(1))
