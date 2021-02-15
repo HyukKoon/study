@@ -1,4 +1,5 @@
-# 참가자 복사해서 복사한 리스트에서 제거해야함 추후 작업은 알아서ㄱㄱ
+#아스키코드 2글자 해결해야 하는 과제.
+'''
 def solution(participant, completion):
     answer = ''
     hashlist = []
@@ -10,29 +11,42 @@ def solution(participant, completion):
             tmp2 += str(ord(j))
         hashlist.append(tmp2)
         tmp2 = ''
-    for i in range(0, len(participant)):
-        print(i)
+    i = 0
+    while i < len(participant):
         tmp = participant[i]
-        print(tmp)
         for j in tmp:
             tmp2 += str(ord(j))
-        # print(tmp2)
-        # print(hashlist)
         if tmp2 in hashlist:
             for j in range(0, int(len(tmp2)/3)):
                 index = j * 3
                 f_str += chr(int(tmp2[index:index+3]))
-            # print(f_str)
             del(participant[participant.index(f_str)])
-            i -= 1
             tmp2 = ''
             f_str = ''
+            i -= 1
         else:
             tmp2 = ''
+        i += 1
     answer = participant
     return answer
+'''
 
+#내장함수 hash 사용 #효율성 탈락
+def solution(participant, completion):
+    answer = ''
+    table = []
+    hashpartic = []
+    for i in participant:
+        table.append(hash(i))
+        hashpartic.append(hash(i))
+    for i in completion:
+        if hash(i) in table:
+            del(table[table.index(hash(i))])
+    answer = participant[hashpartic.index(table[0])]
+    return answer
 
-test = ["leo", "kiki", "eden"]
-test2 = ["eden", "kiki"]
+test = ['marina', 'josipa', 'nikola', 'vinko', 'filipa']
+test2 = ['josipa', 'filipa', 'marina', 'nikola']
 print(solution(test, test2))
+
+# collections의 Counter를 사용하여 dic자료형 형태인 상태로 - 연산이 가능
